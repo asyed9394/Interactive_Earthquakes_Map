@@ -96,6 +96,47 @@ L.geoJson(data, {
   }).addTo(map);
 });
 
+
+// Create the map object with center, zoom level and default layer.
+let map = L.map('mapid', {
+  center: [30, 30],
+  zoom: 2,
+  layers: [streets]
+})
+
+// Pass our map layers into our layers control and add the layers control to the map.
+L.control.layers(baseMaps).addTo(map);
+
+//Having the tileLayer() method before accessing large datasets ensures that the map gets 
+//loaded before the data is added to it.
+
+// Accessing the airport GeoJSON URL
+let airportData = "https://raw.githubusercontent.com/asyed9394/UofTSCS_DA_BC_2020_21_Mapping_Earthquakes/main/majorAirports.json";
+
+/*
+Next, we'll add the d3.json() method, which returns a promise with the then() method and the anonymous function().
+
+Inside the d3.json() method we'll add the airportData variable.
+Inside the anonymous function() we'll add the data parameter, which references the airportData.
+We'll pass this data to the L.geoJSON() layer and then it'll be added to the map with addTo(map).
+*/
+
+// Grabbing our GeoJSON data.
+d3.json(airportData).then(function(data) {
+  console.log(data);
+// Creating a GeoJSON layer with the retrieved data.
+L.geoJson(data, {
+  // We turn each feature into a marker on the map.
+  onEachFeature: function(feature, layer) {
+    console.log(layer);
+    layer.bindPopup("<h2>Airport Code: " + feature.properties.faa + "</h2> <hr> <h3>Airport Name: "+ feature.properties.name  +"</h3>")
+     }
+  }).addTo(map);
+  
+});
+
+
+  
 //to add data to a marker are to use the pointToLayer or onEachFeature callback functions. 
 //With either of these functions, we can add data to a map from each GeoJSON object. 
 //The major difference between the two functions is that the pointToLayer callback function 
