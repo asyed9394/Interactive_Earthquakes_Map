@@ -10,7 +10,7 @@ To complete this project, use a URL for GeoJSON earthquake data from the USGS we
 
 
 ## Solution
-Note: This application require a Mapbox account 
+Note: This solution require a Mapbox account 
 - Retrieve data from a GeoJSON file.
 - Make API requests to a server to host geographical maps.
 - Populate geographical maps with GeoJSON data using JavaScript and the Data-Driven Documents (D3) library.
@@ -20,4 +20,10 @@ Note: This application require a Mapbox account
 - Render maps on a local server.
 
 
+## Instructions to run
+
+1- Run Python server python -m http.server
+2. Copy the local server and port
+3. Navigate to the local port using web browser: localhost:8000
+4. Navigate to the folder Earthquake_Challenge/index.html
 
